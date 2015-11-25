@@ -1,0 +1,2 @@
+1. add in /etc/syslog.conf:user.* /var/log/serversan.log 
+2. reboot syslog :/etc/init.d/syslog reboot

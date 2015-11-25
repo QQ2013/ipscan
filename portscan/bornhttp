@@ -1,0 +1,2 @@
+#/bin/sh
+grep open result | awk {'print "http://"$5":8080"'} > $1.r

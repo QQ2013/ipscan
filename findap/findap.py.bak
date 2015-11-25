@@ -1,0 +1,67 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+import re
+import urllib2
+import httplib
+from urllib2 import Request, urlopen, URLError, HTTPError
+import traceback
+
+def getHtml(url):
+	reg = Request(url)
+	try:
+		page = urllib2.urlopen(url)
+	except HTTPError,e:
+		print 'failed to reach %s' %(url)
+		print 'Error code  :',e.code
+		html = "error"
+	except URLError,e:
+		print 'failed to reach %s' %(url)
+		print 'Reason :',e.reason
+		html = "error"
+	except Exception, e: 
+		print e
+		#if hasattr(e, 'reason'): 
+		#	print 'We failed to reach a server.' 
+		#	print 'Reason: ', e.reason 
+		#	html = "error"
+		#elif hasattr(e, 'code'): 
+		#	print 'The server couldn\'t fulfill the request.' 
+		#	print 'Error code: ', e.code 
+		html = "error" 
+	except httplib.BadStatusLine,e:
+		print 'failed to reach %s' %(url)
+		print 'Error:',e
+		html = "error"			
+	else: 
+		html = page.read()
+	return html
+
+def getApache(html):
+    reg = r'Apache Tomcat'
+    apre = re.compile(reg)
+    aplist = re.findall(apre,html)
+    return len(aplist)
+
+import socket
+import sys
+
+timeout = 2
+socket.setdefaulttimeout(timeout)
+file = open(sys.argv[1])
+lines = file.readlines()
+i = 0;
+total = len(lines)
+for  line in lines:
+	#ip = "http://117.158.40.40:8088/"
+	line = line.split('\n')
+	line = line[0]
+	i=i+1
+	lineout = "%d/%d %s\r\n" %(i,total,line)
+	sys.stderr.write(lineout)
+	#line = "http://59.0.31.112:8080/"
+	html = getHtml(line)
+	#print html
+	#if html != 'error':
+	result = getApache(html)
+	if result > 0:
+		print "find Apache Tomact in %s" %(line)
