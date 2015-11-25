@@ -1,0 +1,27 @@
+#/bin/bash
+#kill all program
+usage()
+{
+    echo 'usage--killpro pro'
+    exit 1
+}
+if [ $# -eq 0 ];then
+    usage
+fi
+pro=$1
+while [ $# -gt 0 ]
+do
+    case $1 in
+    -help)
+    echo 'usage--killpro pro to kill'
+    ;;
+    *) 
+        ps aux | awk '{if($11~'/^.*$pro/') print $2}'| while read line
+        do
+            kill -9 $line
+            echo 'kill '$line''
+        done
+    ;;
+    esac
+    shift
+done

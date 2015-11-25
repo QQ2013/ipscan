@@ -1,0 +1,10 @@
+#!/bin/sh
+echo pingsend
+date
+grep pingsend /var/log/scan.log | tail
+echo ""
+echo ""
+echo ""
+echo pinrecv
+date
+grep pingrecv /var/log/scan.log | tail

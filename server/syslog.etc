@@ -1,0 +1,6 @@
+#!/bin/sh
+echo "#net" >> /etc/rsyslog.conf
+echo "user.*  @10.172.3.157" >> /etc/rsyslog.conf
+#echo "user.*  @123.56.161.71" >> /etc/rsyslog.conf
+
+service rsyslog restart

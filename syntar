@@ -1,0 +1,5 @@
+#!/bin/sh
+date > /var/log/scan.log
+service rsyslog restart
+tar -jcvf syn.tar.bz2 server syn
+mv syn.tar.bz2 /var/www/html

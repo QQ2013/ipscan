@@ -1,0 +1,8 @@
+#!/bin/sh
+echo synscan send
+date
+grep synscan /var/log/scan.log | grep send | tail
+
+echo synscan recv
+date
+grep synscan /var/log/scan.log | grep recv | tail

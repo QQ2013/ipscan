@@ -1,0 +1,5 @@
+#!/bin/sh
+cd ../ipscan
+exec ./pingrecv -p 9999 -f ../data/10/10.ipscan
+
+ 

@@ -1,0 +1,8 @@
+#!/bin/sh
+echo findap 
+date
+grep findap /var/log/scan.log | tail
+
+echo findap 
+date
+tail ../data/222/222.findap

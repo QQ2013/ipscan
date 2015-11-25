@@ -1,0 +1,2 @@
+#!/bin/sh
+grep synscan /var/log/scan.log | grep open  > ../data/$1/$1.synscan

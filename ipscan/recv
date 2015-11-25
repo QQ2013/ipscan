@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ./pingrecv -p 9999 -f 222

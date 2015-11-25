@@ -1,0 +1,3 @@
+#!/bin/sh
+echo > /var/log/scan.log
+service rsyslog restart

@@ -1,0 +1,10 @@
+#!/bin/sh
+./syslog.etc
+cd ../syn
+
+sip=`ifconfig | grep inet | grep -v 127.0.0.1 | awk {'print $2'} |sed -n '2p'| cut -d: -f2`
+echo $sip
+
+exec ./synscan -s $sip -f ip -p 8080 -w 10 -n 1 
+
+ 
